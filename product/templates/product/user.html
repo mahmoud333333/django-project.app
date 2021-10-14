@@ -1,0 +1,60 @@
+{%  extends 'product/main.html' %}
+{% block content %}
+{%  include 'product/status.html' %}
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+
+			   {{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					
+				    <th>Task_NO</th>
+					<th>Descreption</th>
+					<th>Task Date</th>
+					<th>Status</th>
+					<th>confirm once done</th>
+					<th>my_file</th>
+					  
+				
+				</tr>
+
+				{% for TASKS in tasks %}
+
+				<tr>
+				
+				<td>{{TASKS.TASK_NO}}</td>
+				<td>{{TASKS.Descreption}}</td>
+                <td>{{TASKS.date_created}}</td>
+                <td>{{TASKS.status}}</td>
+				{% if TASKS.my_file %}
+				<td><a href="{{TASKS.my_file.url}}">{{TASKS.my_file}}
+				 
+				{% endif %}</a></td>
+				
+            <td><a class="btn btn-primary btn-sm btn-block" href="{% url 'confirmed_tasks' TASKS.id %}">confirm</a></td>
+           
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

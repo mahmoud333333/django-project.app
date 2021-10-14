@@ -1,0 +1,63 @@
+{%  extends 'product/main.html' %}
+{% block content %}
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+
+			   {{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+			        <th>Task_NO</th>
+			        <th>fullfield_by</th>
+					<th>Task Date</th>
+					<th>descreption</th>
+					<th>Notes</th>
+					<th>Status</th>
+					<th>my_file</th>
+					
+					
+					</tr>
+                    
+				{% for FULFILLED in status %}
+					
+				<tr>
+				
+				<td>{{FULFILLED.TASK_NO}}</td>
+				<td>{{FULFILLED.STAFF}}</td>
+                <td>{{FULFILLED.date_created}}</td>
+				<td>{{FULFILLED.Descreption}}</td>
+				<td>{{FULFILLED.note}}</td>
+                <td>{{FULFILLED.status}}</td>
+				{% if FULFILLED.my_file %}
+				<td><a href="{{FULFILLED.my_file.url}}">{{FULFILLED.my_file}}
+				 
+				{% endif %}</a></td>
+				
+				
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends 'product/main.html' %}
+
+{% block content %}
+{% include 'product/status.html' %}
+
+
+<br>
+
+
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+
+			   {{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+
+
+				
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+        <div class="col-md-19">
+            <h5>MaSaeed Tasks</h5>
+            <hr>
+            <div class="card card-body">
+                 <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_tasks' %}">Create_Task</a>
+                 <table class="table table-m"
+                      <tr>
+					      <th>Task_NO</th>
+                          <th>by</th>
+						  <th>To</th>
+                          <th>Task date </th>
+						  <th>descreption</th>
+                          <th>Status</th>
+						  <th>update</th>
+                          <th> delete</th>
+                      </tr>
+                      {% for tasks in tasks %}
+					<tr>
+					    <td>{{tasks.TASK_NO}}</td>
+						<td>{{tasks.Whse_Mangament}}</td>
+						<td>{{tasks.STAFF}}</td>
+						<td>{{tasks.date_created}}</td>
+						<td>{{tasks.Descreption}}</td>
+						<td>{{tasks.status}}</td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'update_tasks' tasks.id %}">Update</a></td>
+
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_tasks' tasks.id %}">Delete</a></td>
+
+					</tr>
+				{% endfor %}
+                </table>
+            </div>    
+         </div>  
+    </div>          
+
+
+
+{% endblock  %}

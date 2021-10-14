@@ -1,0 +1,82 @@
+{% extends 'product/main.html' %}
+
+{% block content %}
+
+<br>
+
+
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Contact Information</h5>
+			<hr>
+			<p>Email:{{STAFF.Email}}: </p>
+			<p>Phone:{{STAFF.Phone}}: </p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total Requests</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{TASKS_count}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+
+			   {{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+				    <th>Task_NO</th>
+					<th>descreption</th>
+				    <th>Note</th>
+					<th>Task Date</th>
+					<th>Status</th>
+					<th>update</th>
+					
+				</tr>
+
+				{% for tasks in tasks %}
+                <tr>
+				<td>{{TASKS.TASK_NO}}</td>
+			    <td>{{TASKS.descreption}}</td>
+                <td>{{TASKS.date_created}}</td>	
+                <td>{{TASKS.status}}</td>
+				<td>{{TASKS.note}}</td>
+                <td><a class="btn btn-sm btn-info" href="{% url 
+                'update_TASKS' TASKS.id %}">Update</a></td>
+				<td><a class="btn btn-sm btn-info" href="{% url 
+                'delete_Requestes' %}">Delete</a></td>
+
+			    </tr>
+				
+				{% endfor %}
+
+
+
+			</table>
+		</div>
+	</div>
+</div>
+      
+{% endblock  %}
